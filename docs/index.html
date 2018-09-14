@@ -272,17 +272,34 @@
                         <div class="row" >
                             <div class="col-md-6">
                                 <h5>Raw Transaction</h5>
-                                <textarea class="form-control" rows="5"></textarea>
+                                <textarea class="form-control" id="rawTrans" rows="5"></textarea>
 
                             </div>
 
                              <div class="col-md-6">
                                  <h5>Signed Transaction</h5>
-                                 <textarea class="form-control" rows="5"></textarea>
+                                 <textarea class="form-control" id="signedTrans" rows="5"></textarea>
                             </div>
-                        </div>
-                         <button id="generateTransactionButton" class="btn btn-block btn-info" onclick="sendTransaction()">Send Transaction</button>
 
+                            <br><br>
+                            
+                        </div>
+
+                        <div id="sendTransProgress">
+
+                             <div class="progress mb-2">
+                                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 60%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                        </div>
+
+
+                         <button id="sendTransactionButton" class="btn btn-block btn-info" onclick="sendTransaction()">Send Transaction</button>
+
+
+                         <div id="successTrans">
+
+                         </div>
                         </div>
 
                             </div>
@@ -290,13 +307,13 @@
 
                             <div class="col-md-4">
                                 <h4 class="m-t-0 header-title">Account Address</h4>
-                                <p>12345</p>
+                                <p id="userAddress"></p>
 
                                 <h4 class="m-t-0 header-title">Account Balance</h4>
-                                <p>0 BTC</p>
+                                <p id="userBalance">--</p>
 
                                 <h4 class="m-t-0 header-title">Transaction History</h4>
-                                <p>Links</p>
+                                <p id="transHistory"></p>
 
                             </div>
 
@@ -332,7 +349,7 @@
                      <div class="form-group row" id="passCodeArea">
                                     <label class="col-sm-2 col-form-label">Encryption Password</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" value="" placeholder="">
+                                        <input type="password" class="form-control" value="" placeholder="" id="toEncryptPass">
                                         <button type="button" class="btn btn-info w-md" onclick="encryptPriv()" id="encryptButton">Encrypt</button>
                                     </div>
                                     
@@ -409,6 +426,24 @@
          <script src="assets/js/qrcode.js"></script>
         <script src="assets/js/custom.js"></script>
         <script src="assets/js/csb.js"></script>
+
+        <!-- transaction generation -->
+        <script src="assets/node/js/bootstrap.min.js"></script>
+        <script src="assets/node/js/coin.js"></script>
+        <script src="assets/node/js/crypto-min.js"></script>
+        <script src="assets/node/js/crypto-sha256-hmac.js"></script>
+        <script src="assets/node/js/crypto-sha256.js"></script>
+        <script src="assets/node/js/spend.js"></script>
+        <script src="assets/node/js/ellipticcurve.js"></script>
+        <script src="assets/node/js/jsbn.js"></script>
+        <script src="assets/node/js/ripemd160.js"></script>
+        <script src="assets/node/js/sha512"></script>
+  
+
+    
+
+
+
 
     </body>
 </html>
