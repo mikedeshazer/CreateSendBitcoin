@@ -9,9 +9,30 @@
   display:none;
   margin-top:30px;
 }
+
+#sendTransProgress{
+  display:none;
+}
 #transactions textarea{
 
   margin-bottom:20px;
+}
+
+#successTrans{
+  display:none;
+  padding:20px;
+  font-size:12px;
+  color:white;
+  background-color:#5ba035;
+  width:100%;
+  display:none;
+  word-wrap: break-word;
+  margin-top:15px;
+  border-radius:3px;
+}
+
+#successTrans a{
+  color:white !important;
 }
 
 #newPrivKey{

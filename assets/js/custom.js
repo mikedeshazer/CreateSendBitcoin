@@ -12,6 +12,12 @@ function toggleEye(){
 }
 
 function createWallet(){
+    if($('#password').val().length<9){
+        toastMsg('Error', "Your password must be at least 9 characters long.<br>Please try again", "danger");
+        return;
+    }
+    toastMsg('Almost There', "You are ready to download your keystore file and receive your private key", "success");
+       
     $('.createWallet').hide();
     $('.saveKeystore').show();
 }
@@ -97,9 +103,32 @@ function createScreen(){
 function fileUploadListen(){
 
     $('#walletFileButton').on('change', function(){
-        $('#unlockCode').show();
-        $('#unlockButton').show()
+        selectedFile = document.getElementById('walletFileButton').files[0]
+        var reader = new FileReader()
+        reader.onload = function(event){ validateUpload(event.target.result);}
+        reader.onerror = function(event){}
+        reader.readAsText(selectedFile)
+       
+
     })
+}
+
+
+function validateUpload(fileContent){
+    try{
+    var encKey= $.parseJSON(fileContent)
+
+    cypherText = encKey.Crypto.cyphertext;
+
+    $('#unlockCode').show();
+    $('#unlockButton').show()
+
+    return true;
+    }
+    catch(err){
+        toastMsg("Incorrect Format", "Please upload an encrypted JSON file that is the correct format", "danger")
+        return false;
+    }
 }
 
 function unlockMethodListen(){
@@ -127,19 +156,145 @@ function unlockMethodListen(){
 }
 
 function unlockEncrypted(){
+
+    var decryptResult = decryptWallet(cypherText, $('#unlockCode').val());
+
+    if(decryptResult == false){
+
+        toastMsg("Error", "Your passphrase does not unlock this", "danger")
+        return;
+    }
+    else{
+        userAddress = privKeyToAddress(decryptResult);
+        currentPriv = decryptResult;
+        toastMsg("Success", "You have unlocked this wallet", "success")
+        getWalletInfo(userAddress);
+    }
+
     $('.howAccess').hide()
     $('.generateTransaction').show()
      $('#transactions').hide();
 }
 
+function getWalletInfo(userAddress){
+    $('#userAddress').html(userAddress)
+
+    $.ajax({
+        url:'https://avocado.proofsuite.com/cloud/api/beta/blockchain.php?address='+userAddress,
+        complete:function(transport){
+            walletData = $.parseJSON(transport.responseText);
+            $('#userBalance').html((walletData.final_balance / 100000000).toFixed(4) + " BTC");
+
+            $('#transHistory').html('<a href="https://www.blockchain.com/btc/address/'+userAddress+'" style="max-width:50px; overflow:scroll; word-wrap:break-word; color:white" target="_blank">https://www.blockchain.com/btc/address/'+userAddress+'</a>')
+        }
+    })
+}
+
+
+function broadcastTransaction(hash){
+    $('#sendTransProgress').show()
+$('#sendTransactionButton').attr('disabled', true);
+    $.ajax({
+        'url':'https://avocado.proofsuite.com/cloud/api/beta/broadcast.php',
+        data: {transHash:hash},
+        complete:function(transport){
+
+            try{
+                    txHash = $.parseJSON(transport.responseText);
+                $('#successTrans').show().html('Transaction ID: <a href="https://www.blockchain.com/btc/tx/'+txHash.txid+'" target="_blank">https://www.blockchain.com/btc/tx/'+txHash.txid+'</a>')
+
+                 $('#sendTransactionButton').attr('disabled', false);
+                     $('#sendTransProgress').hide()
+            }
+
+            catch(err){
+                toastMsg("Error", "There was an issue submitting your transaction to the blockchain. Please try again later. Or broadcast this transaction has on Coinb.in. ", "danger")
+
+                 $('#sendTransactionButton').attr('disabled', false);
+                     $('#sendTransProgress').hide()
+                return;
+            }
+           
+            toastMsg("Success", "Your transaction has been submitted to the blockchain", "success");
+
+
+         
+
+
+        }
+
+    })
+}
 function unlockPrivate(){
-     $('.howAccess').hide()
-     $('.generateTransaction').show()
+     var isValidKey= privKeyToAddress($('#privKey').val().trim());
+     currentPriv = $('#privKey').val().trim();
+    if(isValidKey == false){
+
+        toastMsg("Error", "This is not a valid private key", "danger")
+        return;
+    }
+    else{
+       userAddress = isValidKey;
+        toastMsg("Success", "You have unlocked this wallet", "success")
+        getWalletInfo(userAddress);
+    }
+
+    $('.howAccess').hide()
+    $('.generateTransaction').show()
      $('#transactions').hide();
 }
 
+
+function sendTransaction(){
+    $('#sendTransactionButton').attr('disabled', true);
+
+    var signedHash = $('#signedTrans').val();
+    if($('#toAddress').val().trim().length < 33){
+        toastMsg("Error", "Invalid Recepient Address", 'danger');
+        return;
+    }
+
+    if(isNaN($('#amountToSend').val().trim())){
+          toastMsg("Error", "Amount you are sending is not a number", 'danger');
+        return;
+    }
+
+    if(isNaN($('#feePer100').val().trim())){
+          toastMsg("Error", "Your fee is not a number. Please send a valid number", 'danger');
+        return;
+    }
+
+    broadcastTransaction(signedHash.trim());
+
+}
+
 function generateTransaction(){
+
+
+
+    if($('#toAddress').val().trim().length < 33){
+        toastMsg("Error", "Invalid Recepient Address", 'danger');
+        return;
+    }
+
+    if(isNaN($('#amountToSend').val().trim()) || $('#amountToSend').val().trim() == ""){
+          toastMsg("Error", "Amount you are sending is not a number", 'danger');
+        return;
+    }
+
+    if(isNaN($('#feePer100').val().trim()) || $('#feePer100').val().trim() ==""){
+          toastMsg("Error", "Your fee is not a number. Please send a valid number", 'danger');
+        return;
+    }
+
     $('#transactions').show();
+      generateAndSignTransaction(userAddress, currentPriv, $('#toAddress').val(), parseFloat($('#amountToSend').val()), walletData, parseFloat($('#feePer100').val()) );
+
+         
+
+     $('#signedTrans').val(response[1])
+     $('#rawTrans').val(response[0])
+
 }
 
 function addPasscode(){
@@ -147,6 +302,15 @@ function addPasscode(){
         toastMsg('Not Valid', "The private key you entered is not a valid Bitcoin key", 'danger');
         return;
     }
+   
+    isValidAddress = privKeyToAddress( $('#toEncryptPriv').val().trim())
+
+    if(isValidAddress == false){
+         toastMsg('Not Valid', "The private key you entered is not a valid Bitcoin key that converts into bitcoin address", 'danger');
+        return;
+    }
+
+
 
 
     $('#passCodeArea').show()
@@ -154,6 +318,12 @@ function addPasscode(){
 }
 
 function encryptPriv(){
+
+    var textToShow = generateEncryptedFromKey($('#toEncryptPriv').val().trim(), privKeyToAddress($('#toEncryptPriv').val().trim()),$('#toEncryptPass').val().trim())
+
+$('.encText').val(textToShow);
+
+
     $('.encProgress').css({'width':'40%'})
     $('#encryptProgress').show()
     setTimeout(function(){
@@ -245,7 +415,7 @@ function toastMsg(title, msg, msgType="success"){
 
 
 function downloadEncryptedFile(){
-
+    download(fileName, fileText);
 }
 
 $(document).ready(function(){
