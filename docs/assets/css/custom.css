@@ -1,0 +1,121 @@
+.sendSection{
+  display:none;
+}
+.credentials{
+  display:none;
+}
+
+#transactions{
+  display:none;
+  margin-top:30px;
+}
+#transactions textarea{
+
+  margin-bottom:20px;
+}
+
+#newPrivKey{
+  margin-top:30px;
+  width:60%;
+  text-align:center;
+}
+
+#addPassButton{
+  float:right;
+  margin-top:30px;
+}
+
+.encText{
+  margin-bottom:30px;
+}
+
+#encryptButton{
+  float:right;
+  margin-top:30px;
+}
+
+#unlockCode{
+  margin-top:20px;
+  display:none;
+}
+#unlockButton{
+  margin-top:20px;
+  display:none;
+}
+
+.encryptSection{
+  display:none;
+}
+
+
+.generateTransaction{
+  display:none;
+}
+
+.accessButton{
+  display:none;
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+#privKey{
+  margin-top:30px;
+  display:none;
+}
+.selectAccessType{
+  margin-bottom:35px;
+}
+
+.accessInstruct{
+  margin-top:30px;
+  margin-bottom:30px;
+}
+.createWallet{
+  text-align:center;
+  padding-top:50px;
+}
+
+.passwordFeild{
+  padding-top:20px;
+  padding-left:30px;
+  padding-right:30px;
+}
+
+.createButton{
+  margin-top:30px;
+  margin-bottom:50px;
+}
+
+
+.printPaperButton{
+  margin-top:30px;
+  margin-bottom:50px;
+}
+
+.saveKeystore{
+  display:none;
+  text-align:center;
+  padding-top:50px;
+}
+
+.privateSection{
+  display:none;
+  text-align:center;
+  padding-top:50px;
+}
+
+
+.downloadButton{
+  margin-top:30px;
+  margin-bottom:50px;
+}
+
+.restartButton{
+  margin-top:30px;
+  margin-bottom:50px;
+}
+
+.iUnderstandButton{
+  margin-top:40px;
+  margin-bottom:40px;
+}

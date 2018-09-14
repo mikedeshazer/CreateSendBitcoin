@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Create/Send Bitcoin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Icons & toast css -->
+        <link href="assets/css/jquery.toast.min.css" rel="stylesheet" />
+
+        <link href="assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/dripicons/webfont/webfont.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
+
+        <!-- App css -->
+        <!-- build:css -->
+
+        <link href="assets/css/app.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+        <!-- endbuild -->
+
+    </head>
+
+    <body>
+
+        <!-- Navigation Bar-->
+        <header id="topnav">
+            <nav class="navbar-custom">
+
+                <div class="container-fluid">
+                    <ul class="list-unstyled topbar-right-menu float-right mb-0">
+
+                        <li class="dropdown notification-list">
+                            <!-- Mobile menu toggle-->
+                            <a class="navbar-toggle nav-link">
+                                <div class="lines">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a>
+                            <!-- End mobile menu toggle-->
+                        </li>
+
+                       
+                        
+    
+                    </ul>
+    
+                    <ul class="list-inline menu-left mb-0">
+                        <li class="float-left">
+                            <a href="index.html" class="logo">
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo.png" alt="" height="20">
+                                </span>
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo_sm.png" alt="" height="28">
+                                </span>
+                            </a>
+                        </li>
+                       
+                    </ul>
+                </div>
+
+            </nav>
+            <!-- end topbar-main -->
+
+            <div class="topbar-menu">
+                <div class="container-fluid">
+                    <div id="navigation">
+                        <!-- Navigation Menu-->
+                        <ul class="navigation-menu">
+
+                            <li class="has-submenu">
+                                <a href="javascript:createScreen()"><i class=" mdi mdi-wallet"></i>Create Address</a>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="javascript:sendScreen()"><i class="mdi mdi-rocket"></i>Send Bitcoin</a>
+                               
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="javascript:encryptScreen()"><i class="mdi mdi-lock"></i>Encrypt Existing Key</a>
+                                
+                            </li>
+
+                           
+                        </ul>
+                        <!-- End navigation menu -->
+
+                        <div class="clearfix"></div>
+                    </div> <!-- end #navigation -->
+                </div> <!-- end container -->
+            </div> <!-- end navbar-custom -->
+        </header>
+        <!-- End Navigation Bar-->
+
+
+        <div class="wrapper">
+            <div class="container-fluid">
+
+                <!-- Page title box -->
+                <div class="page-title-alt-bg"></div>
+                <div class="page-title-box">
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+                        
+                        <li class="breadcrumb-item active">Create Address</li>
+                    </ol>
+                    <h4 class="page-title">Create New Bitcoin Address</h4>
+                </div>
+                <!-- End page title box -->
+
+
+
+                <div class="row createSection">
+                    <div class="col-12">
+                        <div class="card-box createWallet">
+                            <h4 class="m-t-0 header-title">Enter a Password</h4>
+                           
+
+
+                           <form class="form-horizontal passwordFeild">
+                               
+                                   
+                                <div class="form-group row">
+                                    
+                                    <div class="input-group">
+                                           
+                                             <input type="password" class="form-control" value="" placeholder="Do NOT forget to save this" id="password">
+
+                                              <div class="input-group-prepend">
+                                                <a href="javascript:toggleEye()" id="eyeBall">
+                                            <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-eye"></i> </span></a>
+                                            </div>
+                                        </div>
+
+
+                                       
+                                    
+                                </div>
+                           
+                               <button type="button" class="btn btn-info w-md createButton" onclick="createWallet()">Create New Wallet</button>
+                            </form>
+
+
+                            <p>This password encrypts your private key. This does not act as a seed to generate your keys. You will need this password + your private key to unlock your wallet.</p>
+
+                        </div> <!-- end card-box -->
+
+
+                        <div class="card-box saveKeystore">
+                            <h4 class="m-t-0 header-title">Save your Keystore File</h4>
+                           
+
+
+                         <button type="button" class="btn btn-info w-md downloadButton" onclick="downloadKeystore()">Download Keystore File</button>
+
+                            <p>**Do not lose it!** It cannot be recovered if you lose it.</p>
+                            <p>**Do not share it!** Your funds will be stolen if you use this file on a malicious/phishing site.</p>
+                            <p>**Make a backup!** Secure it like the millions of dollars it may one day be worth.</p>
+
+
+                             <button type="button" class="btn btn-danger w-md iUnderstandButton" disabled onclick="iUnderstand()">I understand. Continue</button>
+
+
+
+                        </div> <!-- end card-box -->
+
+
+                         <div class="card-box privateSection">
+                            <h4 class="m-t-0 header-title">Save Your Private Key</h4>
+                           <center>
+                                <textarea class="form-control" rows="2" id="newPrivKey"></textarea>
+                            </center>
+                         <button type="button" class="btn btn-info w-md printPaperButton" onclick="printPaperWallet()">Print Paper Wallet</button>
+
+                            <p>**Do not lose it!** It cannot be recovered if you lose it.</p>
+                            <p>**Do not share it!** Your funds will be stolen if you use this file on a malicious/phishing site.</p>
+                            <p>**Make a backup!** Secure it like the millions of dollars it may one day be worth.</p>
+                            
+
+                             <button type="button" class="btn btn-warning w-md restartButton" onclick="restart()">Create Another Wallet</button>
+
+
+
+                        </div> <!-- end card-box -->
+
+
+
+                    </div> <!-- end col -->
+                </div>
+
+
+
+                <!-- send section -->
+
+        <div class="row sendSection">
+            <div class="col-12">
+                <div class="card-box howAccess">
+                    <div class="row">
+                    <div class="col-md-6">
+                     <h4 class="m-t-0 header-title">How would you like to access your wallet?</h4>
+
+                     <div class="mt-3 selectAccessType">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="keystore">
+                                            <label class="custom-control-label" for="customRadio1">Keystore</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="private">
+                                            <label class="custom-control-label" for="customRadio2">Private Key</label>
+                                        </div>
+                        </div>
+
+                    </div> <!--end col -->
+
+                    <div class="col-md-6 credentials">
+                     <h4 class="m-t-0 header-title accessAction">Paste Your Private Key</h4>
+
+                     <p class="accessInstruct"></p>
+
+
+                     <input type="file" id="walletFileButton" class="btn btn-block btn-light accessButton"></button>
+
+                     <input type="password" class="form-control" value="" placeholder="Password" id="unlockCode">
+
+                     <button type="button" class="btn btn-primary w-md" id="unlockButton" onclick="unlockEncrypted()">Unlock</button>
+
+
+                     <textarea class="form-control" rows="5" id="privKey"></textarea>
+                      <button type="button" id="privKeyButton" class="btn btn-block btn-primary accessButton" onclick="unlockPrivate()">Unlock</button>
+
+                    
+
+                </div> <!--end col -->
+
+            </div><!--end card row -->
+
+                </div>
+
+
+                   <div class="card-box generateTransaction">
+                         <div class="row">
+                            <div class="col-md-8">
+                            <form action="javascript:generateTransaction()">
+                                <div class="form-group">
+                                    <label for="toAddress">To Address</label>
+                                    <input type="text" class="form-control" id="toAddress" aria-describedby="toAddress" placeholder="Recepient Address">
+                                   
+                                </div>
+                                <div class="form-group">
+                                    <label for="amountToSend">Amount To Send</label>
+                                    <input type="text" class="form-control" id="amountToSend" placeholder="Amount">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="feePer100">Fee Per 100kb</label>
+                                    <input type="number" class="form-control" id="feePer100" value=".0001">
+                                </div>
+                                
+                                <button id="generateTransactionButton" class="btn btn-block btn-primary" type="submit">Generate Transaction</button>
+                            </form>
+                        <div id="transactions">
+                        <div class="row" >
+                            <div class="col-md-6">
+                                <h5>Raw Transaction</h5>
+                                <textarea class="form-control" rows="5"></textarea>
+
+                            </div>
+
+                             <div class="col-md-6">
+                                 <h5>Signed Transaction</h5>
+                                 <textarea class="form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+                         <button id="generateTransactionButton" class="btn btn-block btn-info" onclick="sendTransaction()">Send Transaction</button>
+
+                        </div>
+
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <h4 class="m-t-0 header-title">Account Address</h4>
+                                <p>12345</p>
+
+                                <h4 class="m-t-0 header-title">Account Balance</h4>
+                                <p>0 BTC</p>
+
+                                <h4 class="m-t-0 header-title">Transaction History</h4>
+                                <p>Links</p>
+
+                            </div>
+
+                        </div>
+                   </div>
+            </div>
+
+        </div>
+
+
+                <!-- end send section -->
+
+
+                  <!-- encrypt existing section -->
+
+        <div class="row encryptSection">
+            <div class="col-12">
+                <div class="card-box encryptWallet">
+
+                    <div class="form-group row" id="privKeyArea">
+                                    <label class="col-sm-2 col-form-label">Private Key</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" value="" placeholder="You should do this OFFLINE" id="toEncryptPriv">
+                                         <button type="button" class="btn btn-info w-md" id="addPassButton" onclick="addPasscode()">Next</button>
+                                    </div>
+                                   
+
+
+                                   
+
+                    </div>
+
+                     <div class="form-group row" id="passCodeArea">
+                                    <label class="col-sm-2 col-form-label">Encryption Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" value="" placeholder="">
+                                        <button type="button" class="btn btn-info w-md" onclick="encryptPriv()" id="encryptButton">Encrypt</button>
+                                    </div>
+                                    
+
+
+                                   
+
+                    </div>
+
+
+                    <div id="encryptProgress">
+
+                        <div class="progress mb-2">
+                                <div class="progress-bar progress-bar-striped bg-info encProgress" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                    </div>
+
+                    <div id="encryptedText">
+                        <textarea class="form-control encText" rows="5"></textarea>
+                        <button type="button" class="btn btn-light w-md" onclick="downloadEncryptedFile()">Download</button>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+                <!-- end send section -->
+
+
+            </div> <!-- end container -->
+        </div>
+        <!-- end wrapper -->
+
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        2018 - CreateSendBitcoin.com
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
+
+
+      
+
+
+
+        <!-- jQuery  -->
+        <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+         <script src="assets/js/jquery.toast.min.js"></script>
+         <script src="assets/js/wallet-address-validator.js"></script>
+
+        <script src="assets/js/crypto-js.js"></script>
+        <script src="assets/js/sha256.js"></script>
+         <script src="assets/js/aes.js"></script>
+         <script src="assets/js/enc-utf8.js"></script>
+         
+         <script src="assets/js/coinkey.bundle.js"></script>
+         <script src="assets/js/qrcode.js"></script>
+        <script src="assets/js/custom.js"></script>
+        <script src="assets/js/csb.js"></script>
+
+    </body>
+</html>
