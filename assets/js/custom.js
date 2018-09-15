@@ -71,7 +71,39 @@ function encryptScreen(){
     $('#addPassButton').show();
      $('#encryptProgress').hide()
       $('#encryptedText').hide()
+       $('.faqSection').hide();
       restart()
+
+}
+
+function faqScreen(){
+
+    if($('#faqCreate').attr('aria-expanded') == "false"){
+        $('#faqCreate').click()
+    }   
+
+    $('.createSection').hide();
+    $('.sendSection').hide();
+    $('.encryptSection').hide();
+    $('.page-title').html('FAQ')
+    $('.breadcrumb-item:nth(1)').html('FAQ')
+    $('#privKeyArea').hide()
+    $('#passCodeArea').hide()
+    $('#addPassButton').hide();
+     $('#encryptProgress').hide()
+      $('#encryptedText').hide()
+       $('.faqSection').show();
+      restart()
+
+}
+
+function faqAbout(){
+    faqScreen()
+    if($('#aboutFaq').attr('aria-expanded') == "false"){
+        $('#aboutFaq').click()
+    }   
+    
+   
 
 }
 
@@ -84,6 +116,7 @@ function sendScreen(){
 
      $('.howAccess').show()
      $('.generateTransaction').hide()
+      $('.faqSection').hide();
      restart()
 
 }
@@ -96,6 +129,7 @@ function createScreen(){
     $('.sendSection').hide();
     $('.page-title').html('Create New Bitcoin Address')
     $('.breadcrumb-item:nth(1)').html('Create Address')
+     $('.faqSection').hide();
     restart()
 }
 
@@ -418,9 +452,14 @@ function downloadEncryptedFile(){
     download(fileName, fileText);
 }
 
+function stickyFoot(){
+    stickyFooter.init();
+}
+
 $(document).ready(function(){
     unlockMethodListen()
     fileUploadListen()
     setupNotification()
     clearPreviousData();
+    stickyFoot()
 })
