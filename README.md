@@ -67,7 +67,7 @@ Found a bug with upstream CreateSendBitcoin? Go ahead and [submit an issue](http
 Contributors
 --------------------
 
-CreateSendBitcoin was built by [Mike De'Shazer](https://github.com/mikedeshazer) while working at [Proofsuite](https://www.proofsuite.com/).
+CreateSendBitcoin was built by [Mike De'Shazer](https://github.com/mikedeshazer) while working at [Proof Suite](https://www.proofsuite.com/).
 
 Special thanks to the following people:
 
