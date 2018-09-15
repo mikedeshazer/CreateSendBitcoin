@@ -7,7 +7,7 @@
 <p align="center">
 A MyEtherWallet-like Experience for Bitcoin Users. CreateSendBitcoin helps you create secure Bitcoin paper wallets, send Bitcoin and encrypt existing naked private keys.</p>
 
-<p align="center"><img src="https://i.imgur.com/gXSPWZ0.png" width=500 alt="Screenshot of CreateSendBitcoin"></p>
+<a href="https://www.createsendbitcoin.com"><p align="center"><img src="https://i.imgur.com/gXSPWZ0.png" width=500 alt="Screenshot of CreateSendBitcoin"></p></a>
 
 <p align="center"><em>The screenshot above is C/S B. Check it out at <a href="https://www.createsendbitcoin.com">createsendbitcoin.com</a>.</em></p>
 
