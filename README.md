@@ -31,7 +31,7 @@ Getting Started with CreateSendBitcoin
 
 You're going to need:
 
- - **Chrome of Firefox Browser (IE9+ works but is not recommended)
+ - **Chrome or Firefox Browser (IE9+ works but is not recommended)
  - **Python or PHP on your computer
 
 
