@@ -17,6 +17,9 @@
   color:#ced4da;
 }
 
+.mainAlertBottom{
+  width:100% !important;
+}
 .footer{
   position:relative;
   bottom:-55px;
