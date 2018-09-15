@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/nW3OKhj.png" alt="C/S B (CreateSendBitcoin)" width="50">
+  <img src="https://i.imgur.com/nW3OKhj.png" alt="C/S B (CreateSendBitcoin)" width="30">
   <br>
  
 </p>
