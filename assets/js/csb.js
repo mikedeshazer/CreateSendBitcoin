@@ -72,7 +72,7 @@ function decryptWallet(fileContent, passCode){
 
 
 
-function generateAndSignTransaction(sendAddr, sendKey, toAddr, amount, walletData){
+function generateAndSignTransaction(sendAddr, sendKey, toAddr, amount, walletData, fee){
 
 
     inputsGoHere={data:{"unspent":[]}, status:"success"};
@@ -114,13 +114,13 @@ catch(err){
         }
         if(r.txs[whichNum]['out'][i]['addr'].toLowerCase() == theSendAddress.toLowerCase() ){
 
-          console.log('got inputs')
-          console.log(theSendAddress.toLowerCase());
-          console.log(parseFloat(r.txs[whichNum]['out'][i]['value'])/100000000)
+         // console.log('got inputs')
+          //console.log(theSendAddress.toLowerCase());
+          //console.log(parseFloat(r.txs[whichNum]['out'][i]['value'])/100000000)
           r.txs[whichNum]['out'][i]['addr']
           txId = r.txs[pos]['hash'];
 
-          console.log('\n\n');
+          //console.log('\n\n');
           if(r.txs[whichNum]['out'][i]['spent'] == false){
              newArr.push({'tx': txId, 'script':r.txs[whichNum]['out'][i]['script'], amount: parseFloat(r.txs[whichNum]['out'][i]['value'])/100000000, 'n':r.txs[whichNum]['out'][i]['n'], "confirmations":0})
           }
@@ -140,7 +140,7 @@ catch(err){
     data1 = {};
 
 
-     answer = genTrans(inputs, sendAddr, sendKey, toAddr, amount, balance, data1)[0];
+     answer = genTrans(inputs, sendAddr, sendKey, toAddr, amount, balance, data1, fee);
 
      return answer;
 
@@ -154,7 +154,7 @@ catch(err){
 
 function genTrans(inputs, sendAddr, sendKey, toAddr, amount, balance, data2, fee){
 
-    console.log("genTransing")
+   
 privatekey=sendKey;
 //balance = 0;
 /*
@@ -166,16 +166,34 @@ privatekey=sendKey;
             */
 
             balance = parseFloat(balance);      
-
+            startFee = fee;
             
-    
+            fee= parseFloat(fee);
+             if(inputs.length ==1){
+                fee = startFee *2;
+                //console.log("1 = "+ fee)
+            }
+            else{
+                for(i in inputs){
+                    if(i ==0){
+                        continue;
+                    }
 
-            minfee = .000055;
-            maxfee =.000055;
+                    //because average input size is 200kb and user is saying fee per 100kb
+                    fee = fee + (startFee/2);
+                   // console.log("fee= "+ fee)
+                }
+             }
+
+
+            minfee = fee;
+            maxfee =fee;
+
+
             amount= parseFloat(amount);
 
 
-            if(amount >= balance && amount < (balance + .003) ){
+            if(amount >= balance && amount < (balance + .00003) ){
                 
                 amount = balance - minfee;
 
@@ -183,25 +201,18 @@ privatekey=sendKey;
 
             if(amount >= balance+minfee){
                 
-                amount = amount - minfee - .0001;
+                amount = amount - minfee - .00001;
 
             }
 
 
             numInputs = inputs.length;
-            if(numInputs ==1){
-                numInputs=2;
-            }
-
-            if(numInputs >3){
-                minfee = .00075;
-                maxfee =.00075;
-            }
+           
 
             
 
             numInputs2 = Math.round(parseInt(numInputs/2));
-            bitMore = numInputs2 * .00004;
+           // bitMore = numInputs2 * .00004;
 
             //minfee = (numInputs2/10000)+ bitMore;
             //maxfee = (numInputs2/10000)+ bitMore;
@@ -240,6 +251,8 @@ privatekey=sendKey;
                     return 0;
                 });
                 
+                console.log(minfee)
+                console.log(maxfee)
                 var a = 0;
                 coinjs.compressed = true;
                  tx = coinjs.transaction();
