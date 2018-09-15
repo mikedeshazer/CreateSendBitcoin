@@ -4,12 +4,11 @@
         <meta charset="utf-8" />
         <title>Create/Send Bitcoin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
 
-         
+        
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  
+      
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
        
@@ -27,7 +26,7 @@
     <meta content='CSB: Create Bitcoin Addresses and Send Bitcoin'/>
 
 
-        <meta content="ProofSuite" name="author" />
+        <meta content="miked" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
@@ -50,6 +49,11 @@
     </head>
 
     <body>
+          <!-- github ribbon -->
+        <a href="https://github.com/mikedeshazer/createsendbitcoin" id="gitRibbon" target="_blank"><img style="" src="assets/images/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+        <!-- github ribbon -->
+
 
         <!-- Navigation Bar-->
         <header id="topnav">
@@ -125,7 +129,7 @@
         <!-- End Navigation Bar-->
 
 
-        <div class="wrapper">
+        <div class="wrapper" data-sticky-wrap>
             <div class="container-fluid">
 
                 <!-- Page title box -->
@@ -175,30 +179,13 @@
 
                             <p>This password encrypts your private key. This does not act as a seed to generate your keys. You will need this password + your private key to unlock your wallet.</p>
 
-
-
+                           
+                           <!-- <p></p>-->
 
                         </div> <!-- end card-box -->
 
 
-                        <div class="row" id="prelimFAQ">
-                    <div class="col-lg-6">
-                        <div class="card m-b-30 card-body">
-                            <h5 class="card-title"><i class=" mdi mdi-wallet bigIcon" style="font-size:50px !important"></i></h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card m-b-30 card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
+         
 
 
 
@@ -241,7 +228,37 @@
 
 
 
+   <div class="row" id="prelimFAQ">
+                    <div class="col-lg-6">
+                        <a href="javascript:faqScreen()"><div class="card m-b-30 card-body">
+                            <h5 class="card-title"><i class=" mdi mdi-wallet bigIcon"></i></h5>
+
+                            <h5 class="card-title">How to Create a Wallet</i></h5>
+
+                            
+                        </div></a>
+                    </div>
+                    <div class="col-lg-6">
+                         <a href="javascript:faqAbout()"> <div class="card m-b-30 card-body">
+                           <h5 class="card-title"><i class="mdi mdi-power-settings bigIcon"></i></h5>
+
+                            <h5 class="card-title">Getting Started</i></h5>
+                        </div></a>
+                    </div>
+            </div>
+
+
+
                     </div> <!-- end col -->
+
+                     <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                CreateSendBitcoin.com does not hold your keys for you. We cannot access accounts, recover keys, reset passwords, nor reverse transactions. Protect your keys & always check that you are on the correct URL
+                            </div>
+
+
                 </div>
 
 
@@ -430,19 +447,286 @@
                 <!-- end send section -->
 
 
+
+
+
+       <!-- faQ section -->
+
+        <div class="row faqSection">
+            <div class="col-12">
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 <div class="row mt-4">
+                    <div class="col-lg-6">
+                        <div id="accordion" class="mb-3">
+
+                            <!-- FAQ Question-->
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="m-0">
+                                        <a class="text-muted" data-toggle="collapse" href="#collapseOne" aria-expanded="true" id="faqCreate">
+                                           <i class="mdi mdi-help-circle mr-1 text-primary"></i> 
+                                           How To Create A Wallet
+                                        </a>
+                                    </h5>
+                                </div>
+                    
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                       <ul>
+  <li id="howTo_1">Go to <a href="https://www.createsendbitcoin.com" target="_blank"> https://www.createsendbitcoin.com/</a>.</li>
+  <li>
+    <p id="howTo_2">Enter a strong but easy to remember password. Do not forget it.</p>
+    <ul>
+      <li id="howTo_2a"><em> This encrypts (protects) your private key. It does not generate your private key. This password alone will **not** be enough to access your Bitcoin. </em></li>
+    </ul>
+  </li>
+  <li id="howTo_3">Click the <code>"Create New Wallet" </code></li>
+  <li>
+    <p id="howTo_4">Download your <code>Keystore file</code> &amp; save this file to a USB drive.</p>
+    <ul>
+      <li id="howTo_4a"><em>This is the encrypted version of your private key. You need the password to access it. It is safer than your unencrypted private key but you must have your password to access it in the future.</em></li>
+    </ul>
+  </li>
+  <li id="howTo_5">Read the warning. If you understand it, click the `"I understand. Continue"` button.</li>
+  <li>
+    <p id="howTo_6">Print your paper wallet backup and/or <em> carefully </em> hand-write the <code>private key</code> on a piece of paper.</p>
+    <ul>
+      <li id="howTo_6a"><em> If you are writing it, it is recommend you write it 2 or 3 times. This decreases the chance your messy handwriting will prevent you from accessing your wallet later. </em></li>
+    </ul>
+  </li>
+  <li>
+    <p id="howTo_7">Copy &amp; paste your address into a text document somewhere.</p>
+    <ul>
+      <li id="howTo_7a">Search your address on <a href="https://blockchain.info" target="_blank"> https://blockchain.info/ </a>. Bookmark this page. This is how you will view your balance at any time</li>
+    </ul>
+  </li>
+  <li id="howTo_8">Send a small amount of Bitcoin (0.0001 BTC) from your previous wallet or exchange to your new wallet.</li>
+  <li>
+    <p id="howTo_9">Unlock your new wallet from the Keystore / UTC file on your USB drive or via the private key that you printed out.  Ensure it unlocks the wallet you are sent to and matches the bookmark you have.</p>
+    <ul>
+      <li id="howTo_9a"><em>Do not simply leave your new wallet open. Pretend you are coming back a year later to access your riches. Can you do it?</em></li>
+    </ul>
+  </li>
+  <li>
+    <p id="howTo_10">Send a small amount of Bitcoin (0.00001 BTC) from this new wallet to another address.</p>
+    <ul>
+      
+    </ul>
+  </li>
+  <li id="howTo_11">Ensure you have recorded all necessary bits of information and the addresses match at all times. If they don't, you mis-wrote something somewhere. That means it's time to start from the beginning in order to make sure you never lose access to your funds.</li>
+</ul>
+                                    </div>
+                                </div>
+                            </div> <!-- end card-->
+
+                            <!-- FAQ Question-->
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="m-0">
+                                        <a class="text-muted" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" id="aboutFaq">
+                                            <i class="mdi mdi-help-circle mr-1 text-primary"></i> 
+                                           What is C/S B
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+
+
+                                        <ul>
+                                        <li >CreateSendBitcoin is a free, open-source, client-side interface.</li>
+                                        <li >We allow you to interact directly with the blockchain while remaining in full control of your keys &amp; your funds.</li>
+                                        <li >You and only you are responsible for your security.</li>
+                                        <li >We cannot recover your funds or freeze your account if you visit a phishing site or lose your private key.</li>
+                                        </ul>
+
+                                        <h3>CreateSendBitcoin is not a Bank</h3>
+                                        <ul>
+                                            <li >When you open an account with a bank or exchange, they create an account for you in their system.</li>
+                                            <li >The bank keeps track of your personal information, account passwords, balances, transactions and ultimately your money.</li>
+                                            <li >The bank charge fees to manage your account and provide services, like refunding transactions when your card gets stolen.</li>
+                                            <li >The bank allows you to write a check or charge your debit card to send money, go online to check your balance, reset your password, and get a new debit card if you lose it.</li>
+                                            <li >You have an account with the bank or exchange and they decide how much money you can send, where you can send it, and how long to hold on a suspicious deposit. All for a fee.</li>
+                                            </ul>
+
+                                        <h3>CreateSendBitcoin is an Interface</h3>
+                                       <ul>
+                                        <li>When you create a wallet on CreateSendBitcoin you are generating a cryptographic set of numbers: your private key and your public key (address).</li>
+                                        <li >The handling of your keys happens entirely on your computer, inside your browser. </li>
+                                        <li >We never transmit, receive or store your private key, password, or other account information.</li>
+                                        <li >We do not charge a transaction fee. </li>
+                                        <li >You are simply using our interface to interact directly with the blockchain. </li>
+                                        <li>If you send your public key (address) to someone, they can send you Bitcoin.  </li>
+                                        <li >If you send your private key to someone, they now have full control of your wallet.  </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Question-->
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="m-0">
+                                        <a class="text-muted" data-toggle="collapse" href="#collapseThree" aria-expanded="false">
+                                            <i class="mdi mdi-help-circle mr-1 text-primary"></i> 
+                                            How is this different from MEW?
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                    <div class="card-body">
+                                       MyEtherWallet was the inspiration for this project. However, many people asked us why there wasn't anything like it for Bitcoin. After playing with the idea for a year, we created it. <br><br>The theme was made dark to demonstrate the contrast in the two different blockchains, and also because much of the UI is driven completely by MEW's design.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Question-->
+                            <div class="card">
+                                <div class="card-header" id="headingFour">
+                                    <h5 class="m-0">
+                                        <a class="text-muted" data-toggle="collapse" href="#collapseFour" aria-expanded="false">
+                                            <i class="mdi mdi-help-circle mr-1 text-primary"></i> 
+                                            Who made this?
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseFour" class="collapse" aria-labelledby="collapseFour" data-parent="#accordion">
+                                    <div class="card-body">
+                                        This project was launched by Mike De'Shazer at the Proof Suite offices in Seoul, KR. <br><br>
+                                        We are seeking a community of developers to enhance and add featuresets to support the many Bitcoins (Bitcoin Cash, Bitcoin Gold, etc). <br><br>Eventually we plan to also add Lightning Network support, Cosmos Hub support and Ethereum support as cross-blockchain technology matures.
+                                    </div>
+                                </div>
+                            </div> <!-- end card-->
+                        </div> <!-- end #accordion -->
+                    </div> <!-- end col -->
+
+                    <div class="col-lg-6">
+                        <div id="accordion1" class="mb-3">
+
+                            <!-- FAQ Question-->
+                            
+
+                            <!-- FAQ Question-->
+                            <div class="card">
+                                <div class="card-header" id="headingFour">
+                                    <h5 class="m-0">
+                                        <a class="text-muted" data-toggle="collapse" href="#collapseEight" aria-expanded="true">
+                                            <i class="mdi mdi-help-circle mr-1 text-primary"></i> 
+                                           What's a blockchain?
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseEight" class="collapse show" aria-labelledby="collapseFour" data-parent="#accordion1">
+                                    <div class="card-body">
+                                       <ul>
+                                            <li>The blockchain is like a huge, global, decentralized spreadsheet.</li>
+                                            <li>It keeps track of who sent how many coins to whom, and what the balance of every wallet is.</li>
+                                            <li>It is stored and maintained by thousands of people (miners) across the globe who have special computers.</li>
+                                            <li>The blocks in the blockchain are made up of all the individual transactions sent from CreateSendBitcoin, Coinb.in, LocalBitcoins, Blockchain.info, Coinbase and everywhere else.</li>
+                                            <li>When you see your balance on CreateSendBitcoin.com or view your transactions on blockchain.info, you are seeing data on the blockchain, not in our personal systems.</li>
+                                            <li>Again: we are not a bank</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div> <!-- end card -->
+                        </div> <!-- end #accordion1-->
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center mt-3 mb-5">
+                            <h4 class="font-weight-normal">Can't find what you are looking for ?</h4>
+                            
+                            <a href="mailto:support@createsendbitcoin.com"><button type="button" class="btn btn-success mt-2">Email us your question</button></a>
+                             <a href="https://twitter.com/createsendbtc" target="_blank"><button type="button" class="btn btn-primary mt-2 ml-1">Send us a tweet</button></a>
+                        </div> <!--end .text-center -->
+                    </div> <!-- end col -->
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+
+                <!-- end faq -->
+
+
+
             </div> <!-- end container -->
         </div>
         <!-- end wrapper -->
 
 
         <!-- Footer -->
-        <footer class="footer">
+        <footer class="footer" data-sticky-footer>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 text-center">
-                        2018 - CreateSendBitcoin.com
-                    </div>
-                </div>
+                                <div class="col-sm-6 m-t-20">
+                                    <a href="https://www.createsendbitcoin.com"><h4 class="m-t-0 header-title">CreateSendBitcoin</h4></a>
+                                    <p class="text-muted m-b-30">
+                                        Free, open-source, client-side interface for generating Bitcoin wallets & more. Interact with the Bitcoin blockchain easily & securely. Double-check the URL ( createsendbitcoin.com ) before unlocking your wallet.
+                                    </p>
+
+                                    <blockquote class="blockquote">
+                                        <p class="mb-0">"03/Jan/2009 Chancellor on brink of second bailout for banks"</p>
+                                        <footer class="blockquote-footer">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa in <cite title="Source Title">Block 1</cite></footer>
+                                    </blockquote>
+
+                                    
+                                   
+
+                                   
+                                </div> <!-- end col -->
+
+                                <div class="col-sm-6 m-t-20 socialLinks">
+                                    
+                                    <p class="text-muted m-b-30">
+                                        <a href="https://github.com/mikedeshazer/createsendbitcoin" target="_blank"><i class="mdi mdi-github-circle mediumIcon"></i></a>
+                                         <a href="https://www.facebook.com/Create-Send-Bitcoin-280955152630593" target="_blank"><i class="mdi mdi-facebook-box mediumIcon"></i></a>
+                                        <a href="https://twitter.com/createsendbtc" target="_blank"><i class="mdi mdi-twitter-box mediumIcon"></i></a>
+                                        <a href="mailto:support@createsendbitcoin.com" target="_blank"><i class="mdi mdi-email-outline mediumIcon"></i></a>
+                                         
+
+                                    </p>
+                                    <p>
+                                        Made with <i class="mdi mdi-heart"></i> & Seoul <i class="mdi mdi-city"></i>
+                                    </p>
+
+                                    <p>
+                                        <a href="javascript:faqScreen()" >FAQ</a>
+                                    </p>
+
+                                    
+
+                                </div> <!-- end col-->
+                            </div>
+                            <!-- end row -->
             </div>
         </footer>
         <!-- End Footer -->
@@ -461,6 +745,7 @@
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
          <script src="assets/js/jquery.toast.min.js"></script>
+         <script src="assets/js/sticky-footer.js"></script>
          <script src="assets/js/wallet-address-validator.js"></script>
 
         <script src="assets/js/crypto-js.js"></script>
@@ -483,7 +768,10 @@
         <script src="assets/node/js/ellipticcurve.js"></script>
         <script src="assets/node/js/jsbn.js"></script>
         <script src="assets/node/js/ripemd160.js"></script>
-        <script src="assets/node/js/sha512"></script>
+        <!--<script src="assets/node/js/sha512.js"></script>-->
+
+
+
   
 
     
