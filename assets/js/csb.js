@@ -185,7 +185,7 @@ privatekey=sendKey;
                 }
              }
 
-
+            finalFee = fee;
             minfee = fee;
             maxfee =fee;
 
