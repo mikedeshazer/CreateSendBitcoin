@@ -217,7 +217,7 @@ function getWalletInfo(userAddress){
         url:'https://avocado.proofsuite.com/cloud/api/beta/blockchain.php?address='+userAddress,
         complete:function(transport){
             walletData = $.parseJSON(transport.responseText);
-            $('#userBalance').html((walletData.final_balance / 100000000).toFixed(4) + " BTC");
+            $('#userBalance').html((walletData.final_balance / 100000000).toFixed(5) + " BTC");
 
             $('#transHistory').html('<a href="https://www.blockchain.com/btc/address/'+userAddress+'" style="max-width:50px; overflow:scroll; word-wrap:break-word; color:white" target="_blank">https://www.blockchain.com/btc/address/'+userAddress+'</a>')
         }
@@ -285,18 +285,34 @@ function sendTransaction(){
     var signedHash = $('#signedTrans').val();
     if($('#toAddress').val().trim().length < 33){
         toastMsg("Error", "Invalid Recepient Address", 'danger');
+        $('#sendTransactionButton').attr('disabled', false);
+           $('#transactions').hide()
         return;
     }
 
     if(isNaN($('#amountToSend').val().trim())){
           toastMsg("Error", "Amount you are sending is not a number", 'danger');
+          $('#sendTransactionButton').attr('disabled', false);
+             $('#transactions').hide()
         return;
     }
 
     if(isNaN($('#feePer100').val().trim())){
           toastMsg("Error", "Your fee is not a number. Please send a valid number", 'danger');
+        $('#sendTransactionButton').attr('disabled', false);
+           $('#transactions').hide()
         return;
     }
+
+//TODO: give user a dialogue asking them if they want to send whole balance minus fee because they dont have enough. right now it defaults to sending whole balance - mine fee if their amount to send is too great
+
+    if((parseFloat($('#feePer100').val()) *2) + parseFloat($('#amountToSend').val().trim()) >= (walletData.final_balance / 100000000).toFixed(5)){
+       toastMsg("Error", "You do not have enough balance + the miner fee to send this transaction. <br>Please reduce amount to send", 'warning');
+       $('#sendTransactionButton').attr('disabled', false);
+       $('#transactions').hide()
+        return;
+    }
+
 
     broadcastTransaction(signedHash.trim());
 
@@ -310,7 +326,7 @@ function getWalletDataThenGenerate(){
         complete:function(transport){
            
             walletData = $.parseJSON(transport.responseText);
-            $('#userBalance').html((walletData.final_balance / 100000000).toFixed(4) + " BTC");
+            $('#userBalance').html((walletData.final_balance / 100000000).toFixed(5) + " BTC");
 
             $('#transHistory').html('<a href="https://www.blockchain.com/btc/address/'+userAddress+'" style="max-width:50px; overflow:scroll; word-wrap:break-word; color:white" target="_blank">https://www.blockchain.com/btc/address/'+userAddress+'</a>')
              generateTransaction()
@@ -422,7 +438,7 @@ function setupNotification(){
     NotificationApp.prototype.send = function(heading, body, position, loaderBgColor, icon, hideAfter, stack, showHideTransition) {
         // default      
         if (!hideAfter)
-            hideAfter = 5000;
+            hideAfter = 6500;
         if (!stack)
             stack = 1;
 
