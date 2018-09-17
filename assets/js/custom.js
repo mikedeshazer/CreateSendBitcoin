@@ -298,6 +298,14 @@ function sendTransaction(){
         return;
     }
 
+//TODO: give user a dialogue asking them if they want to send whole balance minus fee because they dont have enough. right now it defaults to sending whole balance - mine fee if their amount to send is too great
+/*
+    if((parseFloat($('#feePer100').val()) *2) + parseFloat($('#amountToSend').val().trim()) >= (walletData.final_balance / 100000000)){
+       toastMsg("Error", "You do not have enough balance + the miner fee to send this transaction.", 'danger');
+        return;
+    }
+*/
+
     broadcastTransaction(signedHash.trim());
 
 }
