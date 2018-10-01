@@ -11,6 +11,20 @@ function toggleEye(){
     }
 }
 
+
+function toggleEye2(){
+    if($('#eyeBall2 i').hasClass('mdi-eye')){
+        $('#eyeBall2 i').removeClass('mdi-eye')
+        $('#eyeBall2 i').addClass('mdi-eye-off')
+        $('#userKeyPass').attr('type', 'text')
+    }
+    else{
+         $('#eyeBall2 i').removeClass('mdi-eye-off')
+        $('#eyeBall2 i').addClass('mdi-eye')
+        $('#userKeyPass').attr('type', 'password')
+    }
+}
+
 function createWallet(){
     if($('#password').val().length<9){
         toastMsg('Error', "Your password must be at least 9 characters long.<br>Please try again", "danger");
@@ -201,6 +215,7 @@ function unlockEncrypted(){
     else{
         userAddress = privKeyToAddress(decryptResult);
         currentPriv = decryptResult;
+        $('#userKeyPass').val(currentPriv)
         toastMsg("Success", "You have unlocked this wallet", "success")
         getWalletInfo(userAddress);
     }
@@ -384,8 +399,8 @@ function addPasscode(){
     isValidAddress = privKeyToAddress( $('#toEncryptPriv').val().trim())
 
     if(isValidAddress == false){
-         toastMsg('Not Valid', "The private key you entered is not a valid Bitcoin key that converts into bitcoin address", 'danger');
-        return;
+         toastMsg('Warning', "The private key you entered is not a valid Bitcoin key that converts into bitcoin address. If this is for bitcoin, please re-enter.", 'warning');
+        
     }
 
 
