@@ -18,7 +18,7 @@ Features
 
 * **Send Bitcoin by Creating the Transaction on Your Computer** — No need to trust third-parties to handle your bitcoin. There are other interfaces out there like Coinb.in and Bitaddress.org; however, for people new to bitcoin and also for people who want less hassle, C/S B offers an easy alternative.
 
-* **Secure & Encrypt Existing Wallets** — Most paper wallets are generated in BitAddress; however, these private keys are not encrypted. If someone discovers them, they can easily take your bitcoins. We offer a completely offline solution for encrypting those keys securely for more peace of mind.
+* **Secure & Encrypt Existing Wallets** — Most paper wallets are generated in BitAddress; however, these private keys are not encrypted. If someone discovers them, he or she can easily take your bitcoins. We offer a completely offline solution for encrypting those keys securely for more peace of mind.
 
 * **Modeled After MyEtherWallet** — You might have noticed that the user-flow is very similar to MyEtherWallet. That is no coincidence. We modeled the design after MyEtherWallet and added a dark theme to easily identify which platform you are on. We will continue in this way as we add new features like Multisig wallet generation, multi-sig wallet bitcoin transactions, and the addition of other bitcoin blockchains (like Bitcoin Cash, Bitcoin Gold, etc).
 
@@ -81,8 +81,8 @@ You are invited to contribute! Again, feel free to submit pull requests with bug
 Special Thanks
 --------------------
 - [Crypto-JS](https://github.com/brix/crypto-js)
-- [MyEtherWallet](https://myetherwallet.com): The design is based off of the userflow developed by MyEtherWallet
-- [Greeva](https://themeforest.net/item/greeva-responsive-admin-dashboard-template/22226768): If you use publish your version of CreateSendBitcoin make sure to pay the licensing fee
+- [MyEtherWallet](https://myetherwallet.com): The design is based on the user flow developed by MyEtherWallet
+- [Greeva](https://themeforest.net/item/greeva-responsive-admin-dashboard-template/22226768): If you use it to publish your version of CreateSendBitcoin make sure to pay the licensing fee
 - [jQuery Foundation](https://jquery.org/)
 - [Material Icons](https://material.io/tools/icons/?style=baseline)
 - [toastr](https://github.com/CodeSeven/toastr)
